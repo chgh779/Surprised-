@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise</title>
+    <title>Surprise!</title>
     <style>
         * {
             margin: 0;
@@ -12,20 +12,99 @@
         }
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #121212;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        /* Style for the initial prank button */
+        .btn {
+            padding: 15px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff4757;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        /* Surprise elements hidden initially */
+        .surprise-content {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .flash-bg {
+            animation: flashBackground 0.6s infinite;
+        }
+        @keyframes flashBackground {
+            0% { background-color: #121212; }
+            50% { background-color: #8b0000; }
+            100% { background-color: #121212; }
         }
         .emoji {
-            font-size: 150px;
+            font-size: 180px;
             user-select: none;
+            animation: bounce 0.4s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-30px); }
+        }
+        .text {
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="emoji">🖕</div>
+    <!-- Initial Button -->
+    <button class="btn" id="prankBtn">Click to Open Surprise 🎁</button>
+
+    <!-- Hidden Surprise Content -->
+    <div class="surprise-content" id="surpriseArea">
+        <div class="emoji">🖕</div>
+        <div class="text">Hahaha Surprise! 😂</div>
+    </div>
+
+    <!-- Free Prank Sound / Laugh Audio Source -->
+    <audio id="prankAudio" src="https://soundjay.com" loop></audio>
+
+    <script>
+        const btn = document.getElementById('prankBtn');
+        const surpriseArea = document.getElementById('surpriseArea');
+        const audio = document.getElementById('prankAudio');
+
+        btn.addEventListener('click', () => {
+            // Hide the button
+            btn.style.display = 'none';
+            
+            // Show the surprise and trigger flashing background
+            surpriseArea.style.display = 'flex';
+            document.body.classList.add('flash-bg');
+            
+            // Play the funny laugh sound
+            audio.play().catch(error => {
+                console.log("Audio play failed:", error);
+            });
+        });
+    </script>
 
 </body>
 </html>
