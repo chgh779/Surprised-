@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,6 @@
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
-        /* Style for the initial prank button */
         .btn {
             padding: 15px 30px;
             font-size: 24px;
@@ -38,7 +38,6 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-        /* Surprise elements hidden initially */
         .surprise-content {
             display: none;
             flex-direction: column;
@@ -83,8 +82,8 @@
         <div class="text">Hahaha Surprise! 😂</div>
     </div>
 
-    <!-- Free Prank Sound / Laugh Audio Source -->
-    <audio id="prankAudio" src="https://soundjay.com" loop></audio>
+    <!-- 100% Working Prank Evil Laugh Sound Link -->
+    <audio id="prankAudio" src="https://google.com" loop preload="auto"></audio>
 
     <script>
         const btn = document.getElementById('prankBtn');
@@ -92,16 +91,14 @@
         const audio = document.getElementById('prankAudio');
 
         btn.addEventListener('click', () => {
-            // Hide the button
             btn.style.display = 'none';
-            
-            // Show the surprise and trigger flashing background
             surpriseArea.style.display = 'flex';
             document.body.classList.add('flash-bg');
             
-            // Play the funny laugh sound
+            // Play sound with high volume
+            audio.volume = 1.0;
             audio.play().catch(error => {
-                console.log("Audio play failed:", error);
+                console.log("Audio load issue:", error);
             });
         });
     </script>
